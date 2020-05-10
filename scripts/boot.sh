@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x
 
 # stop all old containers
 docker stop hello_sql
@@ -13,10 +14,15 @@ docker image rm hello_sql:latest
 docker build -t hello_sql:latest .
 
 # create & run container from image
-docker run --name hello_sql -itd -e POSTGRES_HOST_AUTH_METHOD=trust hello_sql
+docker run \
+  -itd \
+  --name hello_sql \
+  -e POSTGRES_HOST_AUTH_METHOD=trust \
+  -p 7654:5432 \
+  hello_sql
 
 # sleep to wait until psql available
-sleep 1
+sleep 2
 
 # exec into container's shell
 docker exec -it hello_sql psql -Upostgres
