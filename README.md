@@ -7,6 +7,31 @@ These document contains examples that done with [PostgreSQL](https://www.postgre
 
 # Topics
 
+## About PostgreSQL
+
+<details><summary><strong>features</strong></summary><br>
+
+- User-defined types
+- Table inheritance
+- Sophisticated locking mechanism
+- Foreign key referential integrity
+- Views, rules, subquery
+- Nested transactions (savepoints)
+- Multi-version concurrency control (MVCC)
+- Asynchronous replication
+- Tablespaces
+- Point-in-time recovery
+
+</details>
+
+## SQL
+
+### Querying
+
+<details><summary><strong>select</strong></summary><br>
+
+</details>
+
 ## Misc
 
 ### PSQL Commands
