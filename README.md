@@ -26,9 +26,61 @@ These document contains examples that done with [PostgreSQL](https://www.postgre
 
 ## SQL
 
+### Basics
+
+<details><summary><strong>syntax</strong></summary><br>
+
+- SQL language is **case insensitive**. By convention, SQL keywords are used in uppercase to make the code easier to read.
+- You may notice semicolons (;) at the end of the SQL queries. The semicolon is not a part of the SQL statement. It is used to signal PostgreSQL the end of an SQL statement. The semicolon is also used to separate two SQL statements.
+
+</details>
+
 ### Querying
 
-<details><summary><strong>select</strong></summary><br>
+<details><summary><strong>SELECT</strong></summary><br>
+
+SELECT is being used to query data from tables.
+
+##### Clauses:
+- **`DISTINCT`**
+  - select distinct rows
+- **`ORDER BY`**
+  - sort rows
+- **`WHERE`**
+  - filter rows
+- **`LIMIT`** or **`FETCH`**
+  - select a subset of rows
+- **`GROUP BY`**
+  - group rows into groups
+- **`HAVING`**
+  - filter groups
+- **`INNER JOIN`**, **`LEFT JOIN`**, **`FULL OUTER JOIN`**, **`CROSS JOIN`**
+  - join with other tables
+- **`UNION`**, **`INTERSECT`**, **`EXCEPT`**
+  - perform set operations
+
+##### Syntax:
+
+    SELECT
+      <select_list>
+    FROM
+      <table_name>;
+
+- `select_list`
+  - can be a column or comma to separated list of columns
+  - can contain expressions or literal values
+  - `*` = select data from all the columns
+    - it is not a good practice to use the asterisk because it will effect the size of data retrieved from database and may cause slowness.
+    - it is a good practice to specify the column names explicitly
+    - use the asterisk (*) shorthand only for the ad-hoc queries to examine the data
+
+##### Examples:
+
+    SELECT first_name FROM customer;
+
+    SELECT first_name, last_name, email FROM customer;
+
+    SELECT * FROM customer;
 
 </details>
 
