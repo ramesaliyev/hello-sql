@@ -7,7 +7,9 @@ These document contains examples that done with [PostgreSQL](https://www.postgre
 
 # Topics
 
-## PSQL Commands
+## Misc
+
+### PSQL Commands
 
 <details><summary><strong>basics</strong></summary><br>
 
@@ -18,7 +20,7 @@ These document contains examples that done with [PostgreSQL](https://www.postgre
 
 </details>
 
-## Utilities
+### Utilities
 
 <details><summary><strong>pg_restore</strong></summary><br>
 
