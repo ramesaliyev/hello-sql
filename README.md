@@ -39,7 +39,7 @@ These document contains examples that done with [PostgreSQL](https://www.postgre
 
 <details><summary><strong>SELECT</strong></summary><br>
 
-SELECT is being used to query data from tables.
+**`SELECT`** is being used to query data from tables.
 
 ##### Clauses:
 - **`DISTINCT`**
@@ -81,6 +81,23 @@ SELECT is being used to query data from tables.
     SELECT first_name, last_name, email FROM customer;
 
     SELECT * FROM customer;
+
+column alias
+
+    SELECT first_name as name FROM customer;
+
+    SELECT 5 * 3 AS result;
+
+concatenation operator
+
+    SELECT first_name || ' ' || last_name AS email FROM customer;
+
+</details>
+<details><summary><strong>ORDER BY</strong></summary><br>
+
+**`ORDER BY`** is being used to sort the result set returned from the `SELECT` statement
+
+
 
 </details>
 
@@ -137,6 +154,10 @@ To connect PostgreSQL via an app, such as [Postico](https://eggerapps.at/postico
 ## Exec
 
 To exec some command within the container do `docker exec -it hello_sql <command>`, see example commands below.
+
+##### Restart the stopped container:
+
+    docker start hello_sql
 
 ##### Logging into bash:
 
