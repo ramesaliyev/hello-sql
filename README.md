@@ -62,9 +62,9 @@ These document contains examples that done with [PostgreSQL](https://www.postgre
 ##### Syntax:
 
     SELECT
-      <select_list>
+      select_list
     FROM
-      <table_name>;
+      table_name;
 
 - `select_list`
   - can be a column or comma to separated list of columns
@@ -97,7 +97,34 @@ concatenation operator
 
 **`ORDER BY`** is being used to sort the result set returned from the `SELECT` statement
 
+##### Syntax:
 
+    SELECT
+      column_1,
+      column_2
+    FROM
+      table_name
+    ORDER BY
+      column_1 [ASC | DESC],
+      column_2 [ASC | DESC];
+
+`ASC` option is the default
+
+##### Examples:
+
+    SELECT first_name, last_name FROM customer ORDER BY first_name ASC;
+
+    SELECT first_name, last_name FROM customer ORDER BY first_name ASC, last_name DESC;
+
+ sort rows by expressions
+
+    SELECT first_name, LENGTH(first_name) len FROM customer
+    ORDER BY LENGTH(first_name) DESC;
+
+    /* or */
+
+    SELECT first_name, LENGTH(first_name) len FROM customer
+    ORDER BY len DESC;
 
 </details>
 
