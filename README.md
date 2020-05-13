@@ -127,6 +127,62 @@ concatenation operator
     ORDER BY len DESC;
 
 </details>
+<details><summary><strong>DISTINCT</strong></summary><br>
+
+**`DISTINCT`** is being used to remove duplicate rows from a result set returned by a query.
+
+- keeps one row for each group of duplicates
+- **applied to entire tuple**, not to an attribute of the result
+  - which means for a table where only column `a` and `b` exist:
+  - `SELECT DISTINCT * FROM table` == `SELECT DISTINCT a, b FROM table`
+  - and you cannot use; `SELECT a, DISTINCT b FROM table`
+
+##### Syntax:
+
+    SELECT
+      DISTINCT column_1
+    FROM
+      table_name;
+
+multiple columns are specified, clause will evaluate the duplicate based on the **combination of values of these columns**. in another word, uniqueness of the rows determined by combination of specified columns.
+
+    SELECT
+      DISTINCT column_1, column_2
+    FROM
+      table_name;
+
+##### Examples:
+
+    SELECT DISTINCT bcolor FROM t1 ORDER BY bcolor;
+
+    SELECT DISTINCT bcolor, fcolor FROM t1 ORDER BY bcolor, fcolor;
+
+</details>
+<details><summary><strong>DISTINCT ON</strong></summary><br>
+
+**`DISTINCT ON`** is more similar to `GROUP BY` than it is to `DISTINCT`. Query with `DISTINCT ON` first will sorts the result set by the columns in `ORDER BY` clause, and then for each group of duplicates, it keeps the first row in the returned result set. In another word, it tells PostgreSQL to return a single row for each distinct group defined by the `ON` clause, which row in that group is returned is specified with the `ORDER BY` clause.
+
+- is a PostgreSQL addition to the language
+- it is good practice to always use the `ORDER BY` clause with the `DISTINCT ON(expression)`
+- `DISTINCT ON` expression must match the `leftmost` expression in the `ORDER` BY clause
+
+##### Syntax:
+
+    SELECT
+      DISTINCT ON (column_1) column_alias,
+      column_2
+    FROM
+      table_name
+    ORDER BY
+      column_1,
+      column_2;
+
+##### Examples:
+
+    SELECT DISTINCT ON (bcolor) bcolor, fcolor
+    FROM t1 ORDER BY bcolor, fcolor;
+
+</details>
 
 ## Misc
 
