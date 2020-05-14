@@ -74,7 +74,7 @@ These document contains examples that done with [PostgreSQL](https://www.postgre
     - it is a good practice to specify the column names explicitly
     - use the asterisk (*) shorthand only for the ad-hoc queries to examine the data
 
-##### Examples:
+##### Usages:
 
     SELECT first_name FROM customer;
 
@@ -110,7 +110,7 @@ concatenation operator
 
 `ASC` option is the default
 
-##### Examples:
+##### Usages:
 
     SELECT first_name, last_name FROM customer ORDER BY first_name ASC;
 
@@ -151,7 +151,7 @@ multiple columns are specified, clause will evaluate the duplicate based on the 
     FROM
       table_name;
 
-##### Examples:
+##### Usages:
 
     SELECT DISTINCT bcolor FROM t1 ORDER BY bcolor;
 
@@ -177,10 +177,77 @@ multiple columns are specified, clause will evaluate the duplicate based on the 
       column_1,
       column_2;
 
-##### Examples:
+##### Usages:
 
     SELECT DISTINCT ON (bcolor) bcolor, fcolor
     FROM t1 ORDER BY bcolor, fcolor;
+
+</details>
+
+### Filtering
+
+<details><summary><strong>WHERE</strong></summary><br>
+
+**`WHERE`** is being used to
+- filter rows returned from the `SELECT` statement.
+- filter rows will be updated in the `UPDATE` statement
+- filter rows will be deleted in the `DELETE` statement
+
+- only rows that cause the condition evaluates to true will be affected
+<br>
+
+Following comparison operators can be used;
+|Operator|Description|
+|---|---|
+|=|Equal|
+|>|Greater than|
+|<|Less than|
+|>=|Greater than or equal|
+|<=|Less than or equal|
+|<> or !=|Not equal|
+|AND|Logical operator AND|
+|OR|Logical operator OR|
+<br>
+
+##### Syntax:
+
+    SELECT select_list
+    FROM table_name
+    WHERE condition;
+
+- condition must evaluate to `true`, `false`, or `unknown`
+- condition can be a `boolean expression` or a `combination of boolean expressions` using **`AND`** and **`OR`** operators
+
+##### Usages:
+
+    SELECT last_name, first_name FROM customer WHERE first_name = 'Jamie';
+
+**`AND`**
+
+    SELECT last_name, first_name FROM customer WHERE first_name = 'Jamie' AND last_name = 'Rice';
+
+**`OR`**
+
+    SELECT first_name, last_name FROM customer WHERE last_name = 'Rodriguez' OR first_name = 'Adam';
+
+**`IN`**, match values by list (*See IN chapter.*)
+
+    SELECT first_name, last_name FROM customer WHERE first_name IN ('Ann','Anne','Annie');
+
+**`LIKE`**, matches string by a specified pattern (*See LIKE chapter.*)
+
+    SELECT first_name, last_name FROM customer WHERE first_name LIKE 'Ann%'
+
+**`BETWEEN`**, matches values which are in a specified range (*See BETWEEN chapter.*)
+
+    SELECT first_name, LENGTH(first_name) name_length FROM customer
+    WHERE first_name LIKE 'A%' AND LENGTH(first_name) BETWEEN 3 AND 5
+    ORDER BY name_length;
+
+Using with other comparison operators;
+
+    SELECT first_name, last_name FROM customer
+    WHERE first_name LIKE 'Bra%' AND  last_name <> 'Motley';
 
 </details>
 
