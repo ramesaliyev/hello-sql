@@ -389,6 +389,56 @@ date ranges
     WHERE payment_date BETWEEN '2007-02-07' AND '2007-02-15';
 
 </details>
+<details><summary><strong>LIKE and ILIKE</strong></summary><br>
+
+**`LIKE`** and **`ILIKE`** are `WHERE` clauses and they are being used to match a value against given pattern.
+
+`ILIKE` is same as `LIKE` operator but it matches values **case-insensitively**.
+
+PostgreSQL also provides alias operators for `LIKE` and `ILIKE`.
+|operator|alias|
+|---|---|
+|LIKE|~~|
+|NOT LIKE|!~~|
+|ILIKE|~~*|
+|NOT ILIKE|!~~*|
+
+##### Syntax:
+
+    SELECT select_list
+    FROM table_name
+    WHERE value LIKE 'pattern';
+
+wildcard character
+- **`%`**, for matching any sequence of characters
+- **`_`**, for matching any single character
+
+if the pattern does not contain any wildcard character, the `LIKE` operator acts like the `equal` (`=`) operator.
+
+##### Usages:
+
+    SELECT first_name, last_name FROM customer
+    WHERE first_name LIKE '%er%'
+
+    SELECT first_name, last_name FROM customer
+    WHERE first_name LIKE '_her%';
+
+**`NOT LIKE`**
+
+    SELECT first_name, last_name FROM customer
+    WHERE first_name NOT LIKE 'Jen%';
+
+**`ILIKE`**
+
+    SELECT first_name, last_name FROM customer
+    WHERE first_name ILIKE 'BAR%';
+
+using aliases
+
+    SELECT first_name, last_name FROM customer
+    WHERE first_name ~~ '_her%';
+
+</details>
 
 ## Misc
 
