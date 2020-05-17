@@ -321,6 +321,48 @@ to skip a number of rows before returning the `n` rows, `OFFSET` clause could be
     OFFSET 5 ROWS FETCH FIRST 5 ROW ONLY;
 
 </details>
+<details><summary><strong>IN</strong></summary><br>
+
+**`IN`** is a `WHERE` clause and being used to check against a list of values.
+
+##### Syntax:
+
+    SELECT select_list
+    FROM table_name
+    WHERE value IN (value1,value2,...);
+
+- list of values can be
+  - a list of numbers or strings
+  - result set of a `SELECT` statement
+
+    SELECT select_list
+    FROM table_name
+    WHERE value IN (SELECT value FROM tbl_name);
+
+statement inside the parentheses is called a subquery which is a query nested inside another query
+
+##### Usages:
+
+    SELECT customer_id, rental_id, return_date FROM rental
+    WHERE customer_id IN (1, 2)
+    ORDER BY return_date DESC;
+
+**`NOT IN`**
+
+    SELECT customer_id, rental_id, return_date
+    FROM rental
+    WHERE customer_id NOT IN (1, 2);
+
+with subquery
+
+    SELECT first_name, last_name
+    FROM customer
+    WHERE customer_id IN (
+      SELECT customer_id FROM rental
+      WHERE CAST (return_date AS DATE) = '2005-05-27'
+    );
+
+</details>
 
 ## Misc
 
